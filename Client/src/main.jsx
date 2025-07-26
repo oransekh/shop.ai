@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -10,6 +9,7 @@ import Woman from "./pages/Woman.jsx";
 import Sale from "./pages/Sale.jsx";
 import Kids from "./pages/Kids.jsx";
 import Cart from "./pages/Cart.jsx";
+import Products from "./features/products/Products.jsx";
 
 // Create the router
 const router = createBrowserRouter([
@@ -23,13 +23,12 @@ const router = createBrowserRouter([
       { path: "kids", element: <Kids /> },
       { path: "sale", element: <Sale /> },
       { path: "cart", element: <Cart /> },
+      { path: "products/:slug", element: <Products /> },
     ],
   },
 ]);
 
 // Render the app
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>
+  <RouterProvider router={router} />
 );

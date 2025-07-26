@@ -23,7 +23,7 @@ const Navbar = () => {
   }, [user]); // runs whenever user changes
 
   return (
-    <nav className="relative w-full shadow-lg bg-gradient-to-r from-purple-100 via-pink-50 to-white">
+    <nav className="relative w-full min-w-xs  shadow-lg bg-gradient-to-r from-purple-100 via-pink-50 to-white">
       <div className="flex justify-between items-center px-5 sm:px-10 py-4">
         {/* Logo */}
         <h2

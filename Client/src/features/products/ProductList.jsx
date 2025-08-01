@@ -1,9 +1,29 @@
 import React from "react";
-import { products } from "../../assets/assets";
+import { rawProducts } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
+import { Heart } from "lucide-react";
+import { useSelector, useDispatch } from "react-redux";
+import { addToWishlist, removeFromWishlist } from "../../store/wishlistSlice";
 
 const ProductList = () => {
   const navigate = useNavigate();
+  const wishlist = useSelector((state) => state.wishlist);
+  const dispatch = useDispatch();
+
+  console.log("Wishlist:", wishlist);
+
+  const isInWishlist = (productId) => {
+    return wishlist.some((item) => item.id === productId);
+  };
+
+  const handleWishlistToggle = (product) => {
+    if (isInWishlist(product.id)) {
+      dispatch(removeFromWishlist(product.id));
+    } else {
+      dispatch(addToWishlist(product));
+    }
+  };
+
   return (
     <section className="mx-auto py-16">
       {/* heading */}
@@ -18,12 +38,24 @@ const ProductList = () => {
 
       {/*listing products*/}
       <div className="mx-auto max-w-7xl grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-2 gap-6 px-4">
-        {products.slice(0, 4).map((product) => (
+        {rawProducts.slice(0, 4).map((product) => (
           <div
-            className="cursor-pointer shadow-lg rounded-sm text-center p-5"
-            key={product.slug}
-            onClick={() => navigate(`/products/${product.slug}`)}
+            className="relative cursor-pointer shadow-lg rounded-sm text-center p-5 group"
+            key={product.id}
+            onClick={() => navigate(`/products/${product.id}`)}
           >
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                handleWishlistToggle(product);
+              }}
+              className="absolute top-3 right-3"
+            >
+              <Heart
+                fill={isInWishlist(product.id) ? "red" : "none"}
+                className=" w-6 h-6 text-gray-500 group-hover:text-red-600 transition-colors duration-200 opacity-0 group-hover:opacity-100"
+              />
+            </span>
             <img src={product.img} alt={product.name || "t - shirt"} />
             <h1 className="text-xl">{product.name}</h1>
             <p>Rs {product.price}</p>

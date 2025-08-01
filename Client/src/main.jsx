@@ -9,7 +9,12 @@ import Woman from "./pages/Woman.jsx";
 import Sale from "./pages/Sale.jsx";
 import Kids from "./pages/Kids.jsx";
 import Cart from "./pages/Cart.jsx";
+import Wishlist from "./pages/Wishlist.jsx";
 import Products from "./features/products/Products.jsx";
+
+//global store
+import { Provider } from "react-redux";
+import store from "./store/Store.js";
 
 // Create the router
 const router = createBrowserRouter([
@@ -23,12 +28,15 @@ const router = createBrowserRouter([
       { path: "kids", element: <Kids /> },
       { path: "sale", element: <Sale /> },
       { path: "cart", element: <Cart /> },
-      { path: "products/:slug", element: <Products /> },
+      { path: "wishlist", element: <Wishlist /> },
+      { path: "products/:id", element: <Products /> },
     ],
   },
 ]);
 
 // Render the app
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );

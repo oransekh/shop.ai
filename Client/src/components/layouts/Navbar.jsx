@@ -3,10 +3,13 @@ import { Menu, X, Search, ShoppingCart, Heart, User } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Register from "../../features/auth/Register";
 import Searchbar from "../common/Searchbar";
+import { useSelector } from "react-redux";
 const Navbar = () => {
   const navigate = useNavigate();
   const [menu, setMenu] = useState(false);
   const [user, setUser] = useState(false);
+  const wishlist = useSelector((state) => state.wishlist);
+  const count = wishlist.length;
 
   //  Disable scroll when modal is open
   useEffect(() => {
@@ -62,6 +65,11 @@ const Navbar = () => {
               className="relative p-2 hover:text-purple-700 transition"
             >
               <Heart className="h-6 w-6 text-gray-600 hover:text-purple-700" />
+              {count > 0 && (
+                <span className="absolute -top-0 -right-0 bg-purple-700 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+                  {count}
+                </span>
+              )}
             </button>
 
             <button
@@ -69,7 +77,7 @@ const Navbar = () => {
               className="relative p-2 hover:text-purple-700 transition"
             >
               <ShoppingCart />
-              <span className="absolute -top-1 -right-1 bg-purple-700 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+              <span className="absolute -top-0 -right-0 bg-purple-700 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
                 2
               </span>
             </button>

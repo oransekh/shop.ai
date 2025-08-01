@@ -41,7 +41,7 @@ const Products = () => {
         </div>
 
         {/* Right: Product Info */}
-        <div className="flex flex-col justify-between space-y-6">
+        <div className="flex flex-col space-y-6">
           <div className="space-y-3">
             <h1 className="text-3xl font-semibold text-gray-800">
               {product.name}
@@ -61,9 +61,13 @@ const Products = () => {
             <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden bg-white">
               <button
                 onClick={() => dispatch(decreaseQuantity(product.id))}
-                disabled={!quantities[product.id] || quantities[product.id].quantity <= 1} // Added fallback check
+                disabled={
+                  !quantities[product.id] ||
+                  quantities[product.id].quantity <= 1
+                } // Added fallback check
                 className={`px-4 py-1 text-lg ${
-                  !quantities[product.id] || quantities[product.id].quantity <= 1
+                  !quantities[product.id] ||
+                  quantities[product.id].quantity <= 1
                     ? "text-gray-400 "
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
@@ -72,14 +76,19 @@ const Products = () => {
               </button>
 
               <span className="px-4 py-1 text-lg font-medium">
-                {quantities[product.id]?.quantity || 1} {/* Added optional chaining */}
+                {quantities[product.id]?.quantity || 1}{" "}
+                {/* Added optional chaining */}
               </span>
 
               <button
                 onClick={() => dispatch(increaseQuantity(product.id))}
-                disabled={!quantities[product.id] || quantities[product.id].quantity >= 5} // Added fallback check
+                disabled={
+                  !quantities[product.id] ||
+                  quantities[product.id].quantity >= 5
+                } // Added fallback check
                 className={`px-4 py-1 text-lg ${
-                  !quantities[product.id] || quantities[product.id].quantity >= 5
+                  !quantities[product.id] ||
+                  quantities[product.id].quantity >= 5
                     ? "text-gray-400 cursor-not-allowed"
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
@@ -87,6 +96,15 @@ const Products = () => {
                 +
               </button>
             </div>
+          </div>
+          {/* add to cart and add to wishlist */}
+          <div className="flex flex-row gap-4 ">
+            <button className="bg-blue-500 text-white py-2 px-4 rounded-lg">
+              Add to Cart
+            </button>
+            <button className="bg-gray-200 text-gray-700 py-2 px-4 rounded-lg mt-2">
+              Add to Wishlist
+            </button>
           </div>
         </div>
       </div>

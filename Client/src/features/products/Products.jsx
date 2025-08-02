@@ -7,6 +7,7 @@ import {
   increaseQuantity,
   decreaseQuantity,
 } from "../../store/productSlice";
+import { addToWishlist } from "../../store/wishlistSlice";
 
 const Products = () => {
   const { id } = useParams();
@@ -98,11 +99,14 @@ const Products = () => {
             </div>
           </div>
           {/* add to cart and add to wishlist */}
-          <div className="flex flex-row gap-4 ">
-            <button className="bg-blue-500 text-white py-2 px-4 rounded-lg">
+          <div className="flex flex-row gap-4">
+            <button className="bg-purple-500 text-white py-3 px-4 rounded-lg shadow-lg transition-colors hover:bg-purple-600 duration-300">
               Add to Cart
             </button>
-            <button className="bg-gray-200 text-gray-700 py-2 px-4 rounded-lg mt-2">
+            <button
+              onClick={() => dispatch(addToWishlist(product))}
+              className="bg-gray-200 text-gray-700 py-3 px-4 rounded-lg shadow-lg transition-colors duration-300 hover:bg-gray-300"
+            >
               Add to Wishlist
             </button>
           </div>

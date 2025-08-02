@@ -1,10 +1,9 @@
 import React from "react";
 import { rawProducts } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
-import { Heart } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToWishlist, removeFromWishlist } from "../../store/wishlistSlice";
-
+import ProductsCard from "../../components/common/proudctsCard";
 const ProductList = () => {
   const navigate = useNavigate();
   const wishlist = useSelector((state) => state.wishlist);
@@ -24,6 +23,10 @@ const ProductList = () => {
     }
   };
 
+  // FILTER ONLY MANS RRODUCTS
+  const filterMens = rawProducts.filter(
+    (products) => products.category === "men"
+  );
   return (
     <section className="mx-auto py-16">
       {/* heading */}
@@ -38,32 +41,23 @@ const ProductList = () => {
 
       {/*listing products*/}
       <div className="mx-auto max-w-7xl grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-2 gap-6 px-4">
-        {rawProducts.slice(0, 4).map((product) => (
-          <div
-            className="relative cursor-pointer shadow-lg rounded-sm text-center p-5 group"
+        {filterMens.slice(0, 4).map((product) => (
+          // product card
+          <ProductsCard
             key={product.id}
-            onClick={() => navigate(`/products/${product.id}`)}
-          >
-            <span
-              onClick={(e) => {
-                e.stopPropagation();
-                handleWishlistToggle(product);
-              }}
-              className="absolute top-3 right-3"
-            >
-              <Heart
-                fill={isInWishlist(product.id) ? "red" : "none"}
-                className=" w-6 h-6 text-gray-500 group-hover:text-red-600 transition-colors duration-200 opacity-0 group-hover:opacity-100"
-              />
-            </span>
-            <img src={product.img} alt={product.name || "t - shirt"} />
-            <h1 className="text-xl">{product.name}</h1>
-            <p>Rs {product.price}</p>
-          </div>
+            product={product}
+            isInWishlist={isInWishlist(product.id)}
+            // onClick handler to navigate to product details
+            onWishlistToggle={() => handleWishlistToggle(product)}
+          />
         ))}
       </div>
+
       <div className="flex justify-center pt-15">
-        <button className="text-lg font-medium text-white bg-purple-500 px-5 py-2 rounded-lg shadow-md hover:bg-purple-600 hover:shadow-lg transition-all duration-200">
+        <button
+          onClick={() => navigate(`/product/men`)}
+          className="text-lg font-medium text-white bg-purple-500 px-5 py-2 rounded-lg shadow-md hover:bg-purple-600 hover:shadow-lg transition-all duration-200"
+        >
           View More
         </button>
       </div>

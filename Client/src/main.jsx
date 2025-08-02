@@ -9,6 +9,7 @@ import Woman from "./pages/Woman.jsx";
 import Sale from "./pages/Sale.jsx";
 import Kids from "./pages/Kids.jsx";
 import Cart from "./pages/Cart.jsx";
+import CategoryPage from "./pages/CategoryPage.jsx";
 import Wishlist from "./pages/Wishlist.jsx";
 import Products from "./features/products/Products.jsx";
 
@@ -30,9 +31,11 @@ const router = createBrowserRouter([
       { path: "cart", element: <Cart /> },
       { path: "wishlist", element: <Wishlist /> },
       { path: "products/:id", element: <Products /> },
+      { path: "product/:category", element: <CategoryPage /> },
     ],
   },
 ]);
+
 
 // Render the app
 createRoot(document.getElementById("root")).render(

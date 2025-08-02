@@ -7,16 +7,20 @@ import { addToWishlist, removeFromWishlist } from "../store/wishlistSlice";
 
 const CategoryPage = () => {
   const { category } = useParams();
-  const filteredProducts = rawProducts.filter(
-    (product) => product.category === category
-  );
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist);
 
+  // Filter products based on category from URL
+  const filteredProducts = rawProducts.filter(
+    (product) => product.category === category
+  );
+
+  // check products already in wishlist
   const isInWishlist = (productId) => {
     return wishlist.some((item) => item.id === productId);
   };
 
+  // handle wishlist toggles
   const handleWishlistToggle = (product) => {
     if (isInWishlist(product.id)) {
       dispatch(removeFromWishlist(product.id));
@@ -27,7 +31,6 @@ const CategoryPage = () => {
 
   return (
     <section className="mx-auto py-16">
-        
       {/*listing products*/}
       <div className="mx-auto max-w-7xl grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-2 gap-6 px-4">
         {filteredProducts.map((product) => (

@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { heroimages } from "../../assets/assets";
 
-const Hero = () => {
+const Hero = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Go to previous image
   const prevImage = () => {
-    setCurrentIndex((prev) => (prev === 0 ? heroimages.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
   // Go to next image
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev === heroimages.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   //  Auto-slide every 5 seconds
@@ -28,7 +27,7 @@ const Hero = () => {
     <section className="relative w-full h-[90vh] overflow-hidden">
       {/* Background Image */}
       <img
-        src={heroimages[currentIndex]}
+        src={images[currentIndex]}
         alt="Hero Banner"
         className="w-full h-full object-cover transition-all duration-700"
       />

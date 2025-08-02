@@ -9,10 +9,15 @@ import image2 from "./image2.jpeg";
 import image3 from "./img3.jpeg";
 import image4 from "./image4.jpeg";
 
-
 export const heroimages = [hero, hero1, hero2, hero3, hero4];
 
+import Woman from "./woman.jpeg";
+import woman1 from "./woman1.jpeg";
+import woman2 from "./woman2.jpeg";
+import woman3 from "./woman3.jpeg";
+import woman4 from "./woman4.jpeg";
 
+export const womanImages = [Woman, woman1, woman2, woman3, woman4];
 
 export const rawProducts = [
   {
@@ -96,4 +101,3 @@ export const rawProducts = [
     colors: ["blue", "grey", "orange"],
   },
 ];
-

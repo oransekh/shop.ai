@@ -9,12 +9,12 @@ const ProductList = () => {
   const wishlist = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
 
-  console.log("Wishlist:", wishlist);
-
+  // check products already in wishlist
   const isInWishlist = (productId) => {
     return wishlist.some((item) => item.id === productId);
   };
 
+  // handle wishlist toggles
   const handleWishlistToggle = (product) => {
     if (isInWishlist(product.id)) {
       dispatch(removeFromWishlist(product.id));
@@ -23,10 +23,11 @@ const ProductList = () => {
     }
   };
 
-  // FILTER ONLY MANS RRODUCTS
+  // FILTER ONLY MENS PRODUCTS
   const filterMens = rawProducts.filter(
     (products) => products.category === "men"
   );
+
   return (
     <section className="mx-auto py-16">
       {/* heading */}
@@ -48,11 +49,15 @@ const ProductList = () => {
             product={product}
             isInWishlist={isInWishlist(product.id)}
             // onClick handler to navigate to product details
-            onWishlistToggle={() => handleWishlistToggle(product)}
+            onWishlistToggle={(e) => {
+              e.stopPropagation();
+              handleWishlistToggle(product);
+            }}
           />
         ))}
       </div>
 
+      {/* view more button */}
       <div className="flex justify-center pt-15">
         <button
           onClick={() => navigate(`/product/men`)}

@@ -19,6 +19,26 @@ import woman4 from "./woman4.jpeg";
 
 export const womanImages = [Woman, woman1, woman2, woman3, woman4];
 
+import boxers from "./boxers.jpeg";
+import cargos from "./cargos.jpeg";
+import jeans from "./jeans.jpeg";
+import joggers from "./joggers.jpeg";
+import plain from "./plain.jpeg";
+import polos from "./polos.jpeg";
+import prints from "./printed.jpeg";
+import oversized from "./over.jpeg";
+
+export const mensCategories = [
+  boxers,
+  cargos,
+  jeans,
+  joggers,
+  plain,
+  polos,
+  prints,
+  oversized,
+];
+
 export const rawProducts = [
   {
     id: "prod-001",

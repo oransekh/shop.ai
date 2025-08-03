@@ -7,6 +7,7 @@ const Men = () => {
     <div>
       <Hero images={heroimages} />
       <ProductList />
+      <div>plase add a new section</div>
     </div>
   );
 };
